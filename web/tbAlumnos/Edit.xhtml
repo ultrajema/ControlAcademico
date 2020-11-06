@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbAlumnosEditDlg" widgetVar="TbAlumnosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbAlumnosTitle}">
+            <h:form id="TbAlumnosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbAlumnosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbAlumnosLabel_carnet}" for="carnet" />
+                        <p:inputText id="carnet" value="#{tbAlumnosController.selected.carnet}" title="#{bundle.EditTbAlumnosTitle_carnet}" required="true" requiredMessage="#{bundle.EditTbAlumnosRequiredMessage_carnet}"/>
+                        <p:outputLabel value="#{bundle.EditTbAlumnosLabel_nombreAlumno}" for="nombreAlumno" />
+                        <p:inputText id="nombreAlumno" value="#{tbAlumnosController.selected.nombreAlumno}" title="#{bundle.EditTbAlumnosTitle_nombreAlumno}" />
+                        <p:outputLabel value="#{bundle.EditTbAlumnosLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{tbAlumnosController.selected.direccion}" title="#{bundle.EditTbAlumnosTitle_direccion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbAlumnosController.update}" value="#{bundle.Save}" update="display,:TbAlumnosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbAlumnosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbAlumnosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

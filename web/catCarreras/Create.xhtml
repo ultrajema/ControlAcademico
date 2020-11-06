@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatCarrerasCreateDlg" widgetVar="CatCarrerasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCatCarrerasTitle}">
+            <h:form id="CatCarrerasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catCarrerasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCatCarrerasLabel_idcarrera}" for="idcarrera" />
+                        <p:inputText id="idcarrera" value="#{catCarrerasController.selected.idcarrera}" title="#{bundle.CreateCatCarrerasTitle_idcarrera}" required="true" requiredMessage="#{bundle.CreateCatCarrerasRequiredMessage_idcarrera}"/>
+                        <p:outputLabel value="#{bundle.CreateCatCarrerasLabel_nombreCarrera}" for="nombreCarrera" />
+                        <p:inputText id="nombreCarrera" value="#{catCarrerasController.selected.nombreCarrera}" title="#{bundle.CreateCatCarrerasTitle_nombreCarrera}" />
+                        <p:outputLabel value="#{bundle.CreateCatCarrerasLabel_idfacultad}" for="idfacultad" />
+                        <p:selectOneMenu id="idfacultad" value="#{catCarrerasController.selected.idfacultad}" >
+                            <f:selectItems value="#{catFacultadesController.itemsAvailableSelectOne}"
+                                           var="idfacultadItem"
+                                           itemValue="#{idfacultadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catCarrerasController.create}" value="#{bundle.Save}" update="display,:CatCarrerasListForm:datalist,:growl" oncomplete="handleSubmit(args,'CatCarrerasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatCarrerasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

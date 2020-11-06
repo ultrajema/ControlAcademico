@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbInstitucionCreateDlg" widgetVar="TbInstitucionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbInstitucionTitle}">
+            <h:form id="TbInstitucionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbInstitucionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbInstitucionLabel_idInstitucion}" for="idInstitucion" />
+                        <p:inputText id="idInstitucion" value="#{tbInstitucionController.selected.idInstitucion}" title="#{bundle.CreateTbInstitucionTitle_idInstitucion}" required="true" requiredMessage="#{bundle.CreateTbInstitucionRequiredMessage_idInstitucion}"/>
+                        <p:outputLabel value="#{bundle.CreateTbInstitucionLabel_nombreSede}" for="nombreSede" />
+                        <p:inputText id="nombreSede" value="#{tbInstitucionController.selected.nombreSede}" title="#{bundle.CreateTbInstitucionTitle_nombreSede}" />
+                        <p:outputLabel value="#{bundle.CreateTbInstitucionLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{tbInstitucionController.selected.direccion}" title="#{bundle.CreateTbInstitucionTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateTbInstitucionLabel_telefonoSede}" for="telefonoSede" />
+                        <p:inputText id="telefonoSede" value="#{tbInstitucionController.selected.telefonoSede}" title="#{bundle.CreateTbInstitucionTitle_telefonoSede}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbInstitucionController.create}" value="#{bundle.Save}" update="display,:TbInstitucionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbInstitucionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbInstitucionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatCursosEditDlg" widgetVar="CatCursosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCatCursosTitle}">
+            <h:form id="CatCursosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catCursosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCatCursosLabel_idCurso}" for="idCurso" />
+                        <p:inputText id="idCurso" value="#{catCursosController.selected.idCurso}" title="#{bundle.EditCatCursosTitle_idCurso}" required="true" requiredMessage="#{bundle.EditCatCursosRequiredMessage_idCurso}"/>
+                        <p:outputLabel value="#{bundle.EditCatCursosLabel_nombreCurso}" for="nombreCurso" />
+                        <p:inputText id="nombreCurso" value="#{catCursosController.selected.nombreCurso}" title="#{bundle.EditCatCursosTitle_nombreCurso}" />
+                        <p:outputLabel value="#{bundle.EditCatCursosLabel_semestre}" for="semestre" />
+                        <p:inputText id="semestre" value="#{catCursosController.selected.semestre}" title="#{bundle.EditCatCursosTitle_semestre}" />
+                        <p:outputLabel value="#{bundle.EditCatCursosLabel_idcarrera}" for="idcarrera" />
+                        <p:selectOneMenu id="idcarrera" value="#{catCursosController.selected.idcarrera}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{catCarrerasController.itemsAvailableSelectOne}"
+                                           var="idcarreraItem"
+                                           itemValue="#{idcarreraItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catCursosController.update}" value="#{bundle.Save}" update="display,:CatCursosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CatCursosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatCursosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

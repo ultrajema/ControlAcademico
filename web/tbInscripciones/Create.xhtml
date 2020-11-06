@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbInscripcionesCreateDlg" widgetVar="TbInscripcionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbInscripcionesTitle}">
+            <h:form id="TbInscripcionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbInscripcionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbInscripcionesLabel_idInscripcion}" for="idInscripcion" />
+                        <p:inputText id="idInscripcion" value="#{tbInscripcionesController.selected.idInscripcion}" title="#{bundle.CreateTbInscripcionesTitle_idInscripcion}" required="true" requiredMessage="#{bundle.CreateTbInscripcionesRequiredMessage_idInscripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateTbInscripcionesLabel_fechaInscripcion}" for="fechaInscripcion" />
+                        <p:calendar id="fechaInscripcion" pattern="MM/dd/yyyy" value="#{tbInscripcionesController.selected.fechaInscripcion}" title="#{bundle.EditTbInscripcionesTitle_fechaInscripcion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbInscripcionesLabel_idcarrera}" for="idcarrera" />
+                        <p:selectOneMenu id="idcarrera" value="#{tbInscripcionesController.selected.idcarrera}" >
+                            <f:selectItems value="#{catCarrerasController.itemsAvailableSelectOne}"
+                                           var="idcarreraItem"
+                                           itemValue="#{idcarreraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbInscripcionesLabel_carnet}" for="carnet" />
+                        <p:selectOneMenu id="carnet" value="#{tbInscripcionesController.selected.carnet}" >
+                            <f:selectItems value="#{tbAlumnosController.itemsAvailableSelectOne}"
+                                           var="carnetItem"
+                                           itemValue="#{carnetItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbInscripcionesController.create}" value="#{bundle.Save}" update="display,:TbInscripcionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbInscripcionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbInscripcionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

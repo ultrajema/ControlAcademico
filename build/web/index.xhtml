@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <i class="pi pi-caret-right"></i>
+        <h2> Menu</h2>
+        <h:form>
+            <p:panelMenu>
+                <p:submenu label="Alumnos">
+                    <p:menuitem value="Inscripciones" icon="pi pi-star" outcome="/tbInscripciones/List" target="prin"/>
+                    <p:menuitem value="Asignacion Cursos A" icon="pi pi-caret-right" outcome="/tbAsignacionCursosAlumno/List"  target="prin"/>
+                </p:submenu>
+                <p:submenu label="Administracion">
+                    <p:menuitem value="Catedraticos" icon="pi pi-caret-right" outcome="/catCatedraticos/List" target="prin" />
+                     <p:menuitem value="Carreras" icon="pi pi-caret-right" outcome="/catCarreras/List" target="prin"/>
+                     <p:menuitem value="Facultades" icon="pi pi-caret-right" outcome="/catFacultades/List" target="prin"/>
+                     <p:menuitem value="Alumnos" icon="pi pi-caret-right" outcome="/tbAlumnos/List" target="prin"/>
+                     <p:menuitem value="Cursos" icon="pi pi-caret-right" outcome="/catCursos/List" target="prin"/>
+                     <p:menuitem value="Asignacion Cursos Catedraticos" icon="pi pi-caret-right" outcome="/tbAsignacionCursosCatedratico/List" target="prin"/>
+                     <p:menuitem value="Institucion" icon="pi pi-caret-right" outcome="/tbInstitucion/List" target="prin"/>
+                </p:submenu>
+            </p:panelMenu>
+        </h:form>
+      
+    </h:body>
+
+
+</html>
+

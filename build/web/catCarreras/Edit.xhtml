@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatCarrerasEditDlg" widgetVar="CatCarrerasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCatCarrerasTitle}">
+            <h:form id="CatCarrerasEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catCarrerasController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCatCarrerasLabel_idcarrera}" for="idcarrera" />
+                        <p:inputText id="idcarrera" value="#{catCarrerasController.selected.idcarrera}" title="#{bundle.EditCatCarrerasTitle_idcarrera}" required="true" requiredMessage="#{bundle.EditCatCarrerasRequiredMessage_idcarrera}"/>
+                        <p:outputLabel value="#{bundle.EditCatCarrerasLabel_nombreCarrera}" for="nombreCarrera" />
+                        <p:inputText id="nombreCarrera" value="#{catCarrerasController.selected.nombreCarrera}" title="#{bundle.EditCatCarrerasTitle_nombreCarrera}" />
+                        <p:outputLabel value="#{bundle.EditCatCarrerasLabel_idfacultad}" for="idfacultad" />
+                        <p:selectOneMenu id="idfacultad" value="#{catCarrerasController.selected.idfacultad}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{catFacultadesController.itemsAvailableSelectOne}"
+                                           var="idfacultadItem"
+                                           itemValue="#{idfacultadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catCarrerasController.update}" value="#{bundle.Save}" update="display,:CatCarrerasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CatCarrerasEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatCarrerasEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

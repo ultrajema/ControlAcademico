@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbInscripcionesViewDlg" widgetVar="TbInscripcionesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbInscripcionesTitle}">
+            <h:form id="TbInscripcionesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbInscripcionesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbInscripcionesLabel_idInscripcion}"/>
+                        <h:outputText value="#{tbInscripcionesController.selected.idInscripcion}" title="#{bundle.ViewTbInscripcionesTitle_idInscripcion}"/>
+                        <h:outputText value="#{bundle.ViewTbInscripcionesLabel_fechaInscripcion}"/>
+                        <h:outputText value="#{tbInscripcionesController.selected.fechaInscripcion}" title="#{bundle.ViewTbInscripcionesTitle_fechaInscripcion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbInscripcionesLabel_idcarrera}"/>
+                        <h:outputText value="#{tbInscripcionesController.selected.idcarrera}" title="#{bundle.ViewTbInscripcionesTitle_idcarrera}"/>
+                        <h:outputText value="#{bundle.ViewTbInscripcionesLabel_carnet}"/>
+                        <h:outputText value="#{tbInscripcionesController.selected.carnet}" title="#{bundle.ViewTbInscripcionesTitle_carnet}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbInscripcionesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatCatedraticosEditDlg" widgetVar="CatCatedraticosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCatCatedraticosTitle}">
+            <h:form id="CatCatedraticosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catCatedraticosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCatCatedraticosLabel_idCatedratico}" for="idCatedratico" />
+                        <p:inputText id="idCatedratico" value="#{catCatedraticosController.selected.idCatedratico}" title="#{bundle.EditCatCatedraticosTitle_idCatedratico}" required="true" requiredMessage="#{bundle.EditCatCatedraticosRequiredMessage_idCatedratico}"/>
+                        <p:outputLabel value="#{bundle.EditCatCatedraticosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{catCatedraticosController.selected.nombre}" title="#{bundle.EditCatCatedraticosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditCatCatedraticosLabel_areaEspecialidad}" for="areaEspecialidad" />
+                        <p:inputText id="areaEspecialidad" value="#{catCatedraticosController.selected.areaEspecialidad}" title="#{bundle.EditCatCatedraticosTitle_areaEspecialidad}" />
+                        <p:outputLabel value="#{bundle.EditCatCatedraticosLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{catCatedraticosController.selected.telefono}" title="#{bundle.EditCatCatedraticosTitle_telefono}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catCatedraticosController.update}" value="#{bundle.Save}" update="display,:CatCatedraticosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CatCatedraticosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatCatedraticosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

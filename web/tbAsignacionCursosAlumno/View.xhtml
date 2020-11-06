@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbAsignacionCursosAlumnoViewDlg" widgetVar="TbAsignacionCursosAlumnoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbAsignacionCursosAlumnoTitle}">
+            <h:form id="TbAsignacionCursosAlumnoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbAsignacionCursosAlumnoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_idAsignacionCurso}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.idAsignacionCurso}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_idAsignacionCurso}"/>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_fechaAsignacion}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.fechaAsignacion}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_fechaAsignacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_notafinal}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.notafinal}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_notafinal}"/>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_aprovado}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.aprovado}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_aprovado}"/>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_carnet}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.carnet}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_carnet}"/>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_idCurso}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.idCurso}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_idCurso}"/>
+                        <h:outputText value="#{bundle.ViewTbAsignacionCursosAlumnoLabel_idAsignacion}"/>
+                        <h:outputText value="#{tbAsignacionCursosAlumnoController.selected.idAsignacion}" title="#{bundle.ViewTbAsignacionCursosAlumnoTitle_idAsignacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbAsignacionCursosAlumnoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

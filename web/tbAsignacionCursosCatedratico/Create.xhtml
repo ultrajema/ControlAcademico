@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbAsignacionCursosCatedraticoCreateDlg" widgetVar="TbAsignacionCursosCatedraticoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbAsignacionCursosCatedraticoTitle}">
+            <h:form id="TbAsignacionCursosCatedraticoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbAsignacionCursosCatedraticoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbAsignacionCursosCatedraticoLabel_idAsignacion}" for="idAsignacion" />
+                        <p:inputText id="idAsignacion" value="#{tbAsignacionCursosCatedraticoController.selected.idAsignacion}" title="#{bundle.CreateTbAsignacionCursosCatedraticoTitle_idAsignacion}" required="true" requiredMessage="#{bundle.CreateTbAsignacionCursosCatedraticoRequiredMessage_idAsignacion}"/>
+                        <p:outputLabel value="#{bundle.CreateTbAsignacionCursosCatedraticoLabel_fechaAsignacion}" for="fechaAsignacion" />
+                        <p:calendar id="fechaAsignacion" pattern="MM/dd/yyyy" value="#{tbAsignacionCursosCatedraticoController.selected.fechaAsignacion}" title="#{bundle.EditTbAsignacionCursosCatedraticoTitle_fechaAsignacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbAsignacionCursosCatedraticoLabel_idCurso}" for="idCurso" />
+                        <p:selectOneMenu id="idCurso" value="#{tbAsignacionCursosCatedraticoController.selected.idCurso}" >
+                            <f:selectItems value="#{catCursosController.itemsAvailableSelectOne}"
+                                           var="idCursoItem"
+                                           itemValue="#{idCursoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbAsignacionCursosCatedraticoLabel_idCatedratico}" for="idCatedratico" />
+                        <p:selectOneMenu id="idCatedratico" value="#{tbAsignacionCursosCatedraticoController.selected.idCatedratico}" >
+                            <f:selectItems value="#{catCatedraticosController.itemsAvailableSelectOne}"
+                                           var="idCatedraticoItem"
+                                           itemValue="#{idCatedraticoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbAsignacionCursosCatedraticoController.create}" value="#{bundle.Save}" update="display,:TbAsignacionCursosCatedraticoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbAsignacionCursosCatedraticoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbAsignacionCursosCatedraticoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
